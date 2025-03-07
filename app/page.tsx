@@ -1,15 +1,15 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { nhost } from './lib/nhost-client';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
-import { translateMessagesTypes } from './utils/translateMessagesTypes';
-import { MessagesChart } from '@/components/MessagesChart';
-import { buildMessagesQuery } from './utils/buildMessagesQuery';
-import dayjs from 'dayjs';
 import { DatePickerWithRange } from '@/components/DatePickerWithRange';
+import { MessagesChart } from '@/components/MessagesChart';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { subDays } from 'date-fns';
+import dayjs from 'dayjs';
+import React, { useEffect, useState } from 'react';
 import { DateRange } from 'react-day-picker';
-import { addDays } from 'date-fns';
+import { nhost } from './lib/nhost-client';
+import { buildMessagesQuery } from './utils/buildMessagesQuery';
+import { translateMessagesTypes } from './utils/translateMessagesTypes';
 
 interface StatsTypeData {
   totalMessagesNumber: number;
@@ -28,9 +28,11 @@ export default function Home() {
   // State to hold stats and error messages
   const [stats, setStats] = useState<ParsedStatsData | null>(null);
   const [error, setError] = useState<string | null>(null);
+
+  // State to hold the date range
   const [date, setDate] = React.useState<DateRange | undefined>({
-    from: new Date(),
-    to: addDays(new Date(), 30),
+    from: subDays(new Date(), 30),
+    to: new Date(),
   });
 
   useEffect(() => {
@@ -221,7 +223,7 @@ export default function Home() {
                     Math.sign(value.progression) === 1 ? '+' : '-'
                   } ${Math.abs(
                     value.progression
-                  )}% depuis la période précédente`}
+                  )}% par rapport à la période précédente`}
                 </p>
               </CardContent>
             </Card>
