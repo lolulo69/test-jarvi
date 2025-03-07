@@ -62,7 +62,6 @@ export default function Home() {
           email: 'quentin@jarvi.tech',
           password: 'mYAW9QVdMKZenfbA',
         });
-        console.log('Signed in', nhost.auth.getUser());
 
         const daysInterval = dayjs(date?.to).diff(dayjs(date?.from), 'days');
 
@@ -152,10 +151,10 @@ export default function Home() {
 
   return (
     <div className="container mx-auto p-4 max-w-7xl pt-10">
-      <div className="flex flex-col lg:flex-row justify-between items-end w-full gap-2 mb-6">
+      <div className="flex flex-col lg:flex-row justify-between items-end w-full gap-6 lg:gap-2 mb-6">
         <div className="flex flex-col gap-6">
-          <h1 className="text-6xl">Statistiques</h1>
-          <h3 className="text-2xl">
+          <h1 className="text-4xl lg:text-6xl">Statistiques</h1>
+          <h3 className="text-xl lg:text-2xl">
             Quel moyen de contact obtient le plus de réponses ?
           </h3>
         </div>
