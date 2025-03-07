@@ -8,7 +8,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from '@/components/ui/chart';
-import { ParsedStatsData } from '@/app/page';
+import { ParsedStatsData } from '@/app/dashboard';
 import { translateMessagesTypes } from '@/app/utils/translateMessagesTypes';
 import {
   Card,
